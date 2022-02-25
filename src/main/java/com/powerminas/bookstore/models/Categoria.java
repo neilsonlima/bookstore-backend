@@ -1,11 +1,14 @@
 package com.powerminas.bookstore.models;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +17,7 @@ public class Categoria {
 	private Long id;
 	private String nome;
 	private String descricao;
+	private List<Livro> livros = new ArrayList<>();
 
 	public Categoria() {
 		super();
@@ -49,6 +53,15 @@ public class Categoria {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	@OneToMany(mappedBy = "gategoria")
+	public List<Livro> getLivros() {
+		return livros;
+	}
+
+	public void setLivros(List<Livro> livros) {
+		this.livros = livros;
 	}
 
 	@Override
