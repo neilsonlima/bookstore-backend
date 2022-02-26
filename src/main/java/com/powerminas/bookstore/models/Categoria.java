@@ -55,7 +55,7 @@ public class Categoria {
 		this.descricao = descricao;
 	}
 
-	@OneToMany(mappedBy = "gategoria")
+	@OneToMany(mappedBy = "categoria")
 	public List<Livro> getLivros() {
 		return livros;
 	}
