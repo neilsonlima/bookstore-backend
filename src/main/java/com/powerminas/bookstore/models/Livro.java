@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "livros")
 public class Livro {
@@ -63,6 +65,7 @@ public class Livro {
 		this.texto = texto;
 	}
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "categoria_id")
 	public Categoria getCategoria() {
