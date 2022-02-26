@@ -22,10 +22,11 @@ public class Livro {
 	public Livro() {
 	}
 
-	public Livro(String titulo, String nome, String texto) {
+	public Livro(String titulo, String nome, String texto, Categoria categoria) {
 		this.titulo = titulo;
 		this.nome = nome;
 		this.texto = texto;
+		this.categoria = categoria;
 	}
 
 	@Id
