@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -17,16 +20,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Livro {
 	private Long id;
 	private String titulo;
-	private String nome;
+	private String autor;
 	private String texto;
 	private Categoria categoria;
 
 	public Livro() {
 	}
 
-	public Livro(String titulo, String nome, String texto, Categoria categoria) {
+	public Livro(String titulo, String autor, String texto, Categoria categoria) {
 		this.titulo = titulo;
-		this.nome = nome;
+		this.autor = autor;
 		this.texto = texto;
 		this.categoria = categoria;
 	}
@@ -41,6 +44,8 @@ public class Livro {
 		this.id = id;
 	}
 
+	@NotEmpty(message = "TITULO do Livro não pode ser vazio!")
+	@Length(min = 3, max = 100, message = "O campo TITULO precisa ter entre 3 e 100 caracteres!")
 	public String getTitulo() {
 		return titulo;
 	}
@@ -49,14 +54,18 @@ public class Livro {
 		this.titulo = titulo;
 	}
 
-	public String getNome() {
-		return nome;
+	@NotEmpty(message = "NOME do AUTOR do Livro não pode ser vazio!")
+	@Length(min = 3, max = 100, message = "O campo Nome precisa ter entre 3 e 100 caracteres!")
+	public String getAutor() {
+		return autor;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setAutor(String autor) {
+		this.autor = autor;
 	}
 
+	@NotEmpty(message = "TEXTO do Livro não pode ser vazio!")
+	@Length(min = 10, max = 200000, message = "O campo TEXTO precisa ter entre 3 e 300 caracteres!")
 	public String getTexto() {
 		return texto;
 	}
@@ -95,7 +104,7 @@ public class Livro {
 
 	@Override
 	public String toString() {
-		return "Livro [id=" + id + ", titulo=" + titulo + ", nome=" + nome + ", texto=" + texto + "]";
+		return "Livro [id=" + id + ", titulo=" + titulo + ", autor=" + autor + ", texto=" + texto + "]";
 	}
 
 }
