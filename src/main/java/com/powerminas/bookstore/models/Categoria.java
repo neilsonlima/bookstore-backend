@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "categorias")
@@ -39,6 +42,8 @@ public class Categoria {
 		this.id = id;
 	}
 
+	@NotEmpty(message = "NOME da categoria não pode ser vazio!")
+	@Length(min = 3, max = 100, message = "O campo NOME precisa ter entre 3 e 100 caracteres!")
 	public String getNome() {
 		return nome;
 	}
@@ -47,6 +52,8 @@ public class Categoria {
 		this.nome = nome;
 	}
 
+	@NotEmpty(message = "Descrição da categoria não pode ser vazia!")
+	@Length(min = 3, max = 200, message = "O campo DESCRIÇÃO precisa ter entre 3 e 100 caracteres!")
 	public String getDescricao() {
 		return descricao;
 	}
